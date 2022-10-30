@@ -3,9 +3,10 @@ import { ref } from "vue";
 import TextInput from "./elements/TextInput.vue";
 import PasswordInput from "./elements/PasswordInput.vue";
 import SubmitBtn from "./elements/SubmitBtn.vue";
-import Text from "./elements/Text.vue";
+import Text from "./elements/WarningText.vue";
 import { useRouter } from "vue-router";
-import { authorization } from "@/composables/authorization/login";
+import { authorization } from "@/composables/api/authorization";
+
 const login = ref("");
 const password = ref("");
 const router = useRouter();
@@ -14,8 +15,7 @@ let formError = ref(false);
 async function handleSubmit(e: Event) {
   e.preventDefault();
   try {
-    const resp = await authorization(login.value, password.value);
-    console.log(resp);
+    await authorization(login.value, password.value);
     router.push("/home");
   } catch (err) {
     formError.value = true;

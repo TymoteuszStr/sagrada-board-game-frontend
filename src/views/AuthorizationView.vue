@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AuthModal from "@/components/Authorization/AuthModal.vue";
+import AuthModal from "@/components/Authorization/AuthContainer.vue";
 </script>
 <template>
   <div class="wrapper">
