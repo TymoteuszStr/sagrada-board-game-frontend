@@ -4,7 +4,11 @@
    align-items: center;
    justify-content: center;
 }
-
+@mixin table-center {
+  display: table-cell;
+  vertical-align: middle;
+  height: 100vh;
+}
 @mixin absolute-center {
    position: absolute;
    top: 50%;

@@ -39,10 +39,8 @@ async function handleSubmit(e: Event) {
 .auth-form {
   display: flex;
   flex-direction: column;
-  height: 460px;
-  justify-content: space-between;
   align-items: center;
-  padding-bottom: 30px;
+  height: 400px;
 }
 
 .invalid {

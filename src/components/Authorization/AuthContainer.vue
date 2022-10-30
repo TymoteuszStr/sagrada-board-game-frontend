@@ -22,14 +22,9 @@ const registerForm = ref();
 
 <style scoped lang="scss">
 .auth-container {
-  position: fixed;
-  bottom: 0px;
-  left: 0;
   width: 100vw;
-  height: 80%;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
-  padding-top: 150px;
+  flex-direction: column;
 }
 </style>

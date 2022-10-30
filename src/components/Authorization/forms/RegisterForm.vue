@@ -38,7 +38,7 @@ async function handleSubmit(e: any): Promise<void> {
 </script>
 
 <template>
-  <form class="register-form" @submit="handleSubmit">
+  <form class="register-form" @submit="handleSubmit" v-auto-animate>
     <TextInput
       v-model="login"
       placeholder="Username or email address"
@@ -64,8 +64,7 @@ async function handleSubmit(e: any): Promise<void> {
 .register-form {
   display: flex;
   flex-direction: column;
-  height: 520px;
-  justify-content: space-between;
+  height: 400px;
   align-items: center;
   padding-bottom: 30px;
 }
