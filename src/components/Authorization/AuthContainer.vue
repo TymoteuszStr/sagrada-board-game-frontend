@@ -7,24 +7,24 @@ let formToggler = ref(true);
 function toggleForm(toggler: boolean): void {
   formToggler.value = toggler;
 }
+const registerForm = ref();
 </script>
 <template>
-  <div class="auth-modal">
-    <AuthorizationForm v-if="formToggler" @showRegister="toggleForm(false)" />
-    <RegisterForm v-else @showLogin="toggleForm(true)" />
+  <div class="auth-container" v-auto-animate>
+    <AuthorizationForm
+      v-if="formToggler"
+      @showRegister="toggleForm(false)"
+      v-auto-animate
+    />
+    <RegisterForm v-else @showLogin="toggleForm(true)" ref="registerForm" />
   </div>
 </template>
 
 <style scoped lang="scss">
-.auth-modal {
-  position: fixed;
-  bottom: 0px;
-  left: 0;
+.auth-container {
   width: 100vw;
-  height: 80%;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
-  padding-top: 150px;
+  flex-direction: column;
 }
 </style>

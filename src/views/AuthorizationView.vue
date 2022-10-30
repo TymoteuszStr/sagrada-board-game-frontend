@@ -1,8 +1,20 @@
 <script lang="ts" setup>
-import AuthModal from "@/components/Authorization/AuthModal.vue";
+import AuthContainer from "@/components/Authorization/AuthContainer.vue";
+import LogoHeader from "@/components/shared/LogoHeader.vue";
 </script>
 <template>
   <div class="wrapper">
-    <AuthModal />
+    <LogoHeader class="logo" />
+    <AuthContainer />
   </div>
 </template>
+<style lang="scss" scoped>
+.wrapper {
+  @include table-center;
+  height: 100vh;
+}
+.logo {
+  position: fixed;
+  top: 25px;
+}
+</style>

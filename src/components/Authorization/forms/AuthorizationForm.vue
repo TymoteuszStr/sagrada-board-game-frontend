@@ -3,22 +3,25 @@ import { ref } from "vue";
 import TextInput from "./elements/TextInput.vue";
 import PasswordInput from "./elements/PasswordInput.vue";
 import SubmitBtn from "./elements/SubmitBtn.vue";
-import Text from "./elements/Text.vue";
+import Text from "./elements/WarningText.vue";
 import { useRouter } from "vue-router";
-import { authorization } from "@/composables/authorization/login";
+import { authorization } from "@/composables/api/authorization";
+import { useVibrate } from "@vueuse/core";
+
 const login = ref("");
 const password = ref("");
 const router = useRouter();
 let formError = ref(false);
+const { vibrate } = useVibrate({ pattern: [100, 100, 100, 100] });
 
 async function handleSubmit(e: Event) {
   e.preventDefault();
   try {
-    const resp = await authorization(login.value, password.value);
-    console.log(resp);
+    await authorization(login.value, password.value);
     router.push("/home");
   } catch (err) {
     formError.value = true;
+    vibrate();
     setTimeout(() => {
       formError.value = false;
     }, 2000);
@@ -39,10 +42,8 @@ async function handleSubmit(e: Event) {
 .auth-form {
   display: flex;
   flex-direction: column;
-  height: 460px;
-  justify-content: space-between;
   align-items: center;
-  padding-bottom: 30px;
+  height: 200px;
 }
 
 .invalid {

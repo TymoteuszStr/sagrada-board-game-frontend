@@ -1,4 +1,4 @@
-import { getItem, setItem, removeItem } from "../localStorage.service";
+import { getItem, setItem, removeItem } from "../shared/cookie.service";
 const ID_TOKEN_KEY = "id_token";
 
 export const getToken = (): string => getItem(ID_TOKEN_KEY) as string;

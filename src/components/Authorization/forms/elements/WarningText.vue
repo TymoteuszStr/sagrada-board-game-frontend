@@ -1,11 +1,10 @@
-
 <script lang="ts" setup>
-interface Props {
-  warning?: boolean
+export interface IProps {
+  warning?: boolean;
 }
-const props = withDefaults(defineProps<Props>(), {
-  warning: false
-})
+const props = withDefaults(defineProps<IProps>(), {
+  warning: false,
+});
 </script>
 
 <template>
@@ -13,7 +12,6 @@ const props = withDefaults(defineProps<Props>(), {
     <slot />
   </p>
 </template>
-
 
 <style lang="scss" scoped>
 .text {
@@ -26,7 +24,6 @@ const props = withDefaults(defineProps<Props>(), {
     transform: scale(1.06);
   }
 }
-
 .warning {
   color: rgb(226, 73, 73);
   text-decoration: none;

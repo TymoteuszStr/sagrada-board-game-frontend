@@ -3,7 +3,8 @@ import { ref } from "vue";
 import TextInput from "./elements/TextInput.vue";
 import PasswordInput from "./elements/PasswordInput.vue";
 import SubmitBtn from "./elements/SubmitBtn.vue";
-import Text from "./elements/Text.vue";
+import Text from "./elements/WarningText.vue";
+import { registerUser } from "@/composables/api/registerUser";
 
 const emit = defineEmits(["showLogin"]);
 const login = ref("");
@@ -24,7 +25,7 @@ async function handleSubmit(e: any): Promise<void> {
     return errorHandle(2);
   }
   try {
-    // await dispatch('REGISTER', { login: login.value, password: password.value[0] });
+    await registerUser(login.value, password.value[0]);
     errorMsg.value = "";
     emit("showLogin");
   } catch (error: any) {
@@ -37,7 +38,7 @@ async function handleSubmit(e: any): Promise<void> {
 </script>
 
 <template>
-  <form class="register-form" @submit="handleSubmit">
+  <form class="register-form" @submit="handleSubmit" v-auto-animate>
     <TextInput
       v-model="login"
       placeholder="Username or email address"
@@ -63,15 +64,13 @@ async function handleSubmit(e: any): Promise<void> {
 .register-form {
   display: flex;
   flex-direction: column;
-  height: 520px;
-  justify-content: space-between;
+  height: 200px;
   align-items: center;
-  padding-bottom: 30px;
 }
 
 .invalid {
   animation-name: shakeX;
   animation-duration: 0.85s;
-  outline: 3px solid red;
+  outline: 2px solid red;
 }
 </style>

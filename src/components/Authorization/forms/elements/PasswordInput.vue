@@ -27,42 +27,8 @@ const password = computed({
 .passwordInput {
   color: white;
   height: 50px;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
   width: 260px;
   border-radius: 25px;
-  /* color: $main-color; */
-  padding: 25px;
-  font-size: 14px;
-
-  &::placeholder {
-    /* color: $main-color; */
-  }
-
-  &:focus {
-    /* color: $navy-blue; */
-  }
-
-  &:focus {
-    background: rgba(255, 255, 255, 0.4);
-    outline: none;
-  }
-}
-
-@media screen and (min-width: 840px) {
-  .passwordInput {
-    background: #242b44;
-    /* color: $font-color; */
-
-    &::placeholder {
-      /* color: $font-color; */
-    }
-
-    &:focus {
-      color: white;
-      background: #2d3352;
-      outline: none;
-    }
-  }
+  background: #242b44;
 }
 </style>
