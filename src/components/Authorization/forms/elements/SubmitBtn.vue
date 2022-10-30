@@ -7,7 +7,7 @@
 <style lang="scss" scoped>
 .button {
   color: white;
-  height: 50px;
+  min-height: 50px;
   background: rgba(255, 255, 255, 0.2);
   border: none;
   margin-top: 90px;

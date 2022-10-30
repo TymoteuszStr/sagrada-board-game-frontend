@@ -6,11 +6,13 @@ import SubmitBtn from "./elements/SubmitBtn.vue";
 import Text from "./elements/WarningText.vue";
 import { useRouter } from "vue-router";
 import { authorization } from "@/composables/api/authorization";
+import { useVibrate } from "@vueuse/core";
 
 const login = ref("");
 const password = ref("");
 const router = useRouter();
 let formError = ref(false);
+const { vibrate } = useVibrate({ pattern: [100, 100, 100, 100] });
 
 async function handleSubmit(e: Event) {
   e.preventDefault();
@@ -19,6 +21,7 @@ async function handleSubmit(e: Event) {
     router.push("/home");
   } catch (err) {
     formError.value = true;
+    vibrate();
     setTimeout(() => {
       formError.value = false;
     }, 2000);
@@ -40,7 +43,7 @@ async function handleSubmit(e: Event) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 400px;
+  height: 200px;
 }
 
 .invalid {

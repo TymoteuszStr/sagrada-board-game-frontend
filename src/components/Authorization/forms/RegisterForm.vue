@@ -64,9 +64,8 @@ async function handleSubmit(e: any): Promise<void> {
 .register-form {
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 200px;
   align-items: center;
-  padding-bottom: 30px;
 }
 
 .invalid {
