@@ -7,17 +7,21 @@ import Text from "./elements/WarningText.vue";
 import { useRouter } from "vue-router";
 import { authorization } from "@/composables/api/authorization";
 import { useVibrate } from "@vueuse/core";
+import { useUserStore } from "@/stores/UserStore";
 
+const userStore = useUserStore();
 const login = ref("");
 const password = ref("");
 const router = useRouter();
-let formError = ref(false);
 const { vibrate } = useVibrate({ pattern: [100, 100, 100, 100] });
+let formError = ref(false);
 
 async function handleSubmit(e: Event) {
   e.preventDefault();
   try {
-    await authorization(login.value, password.value);
+    const user = await authorization(login.value, password.value);
+    userStore.user = user;
+    userStore.isUserLogged = true;
     router.push("/home");
   } catch (err) {
     formError.value = true;

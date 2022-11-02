@@ -1,14 +1,15 @@
-import { getItem, setItem, removeItem } from "../shared/cookie.service";
+import { getCookie, setCookie, removeCookie } from "../shared/cookie.service";
 const ID_TOKEN_KEY = "id_token";
 
-export const getToken = (): string => getItem(ID_TOKEN_KEY) as string;
+export const getToken = (): string => getCookie(ID_TOKEN_KEY) as string;
 
 export const saveToken = (token: string): void => {
-  setItem(ID_TOKEN_KEY, token);
+  console.log(token);
+  setCookie(ID_TOKEN_KEY, token);
 };
 
 export const destroyToken = (): void => {
-  removeItem(ID_TOKEN_KEY);
+  removeCookie(ID_TOKEN_KEY);
 };
 
 export default { getToken, saveToken, destroyToken };
