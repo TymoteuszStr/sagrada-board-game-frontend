@@ -5,15 +5,13 @@ const { get, getAll, set, remove } = useCookies(["cookies-sagrada"], {
   autoUpdateDependencies: false,
 });
 
-export const getItem = (key: string): unknown => {
-  return JSON.parse(get(key) as string);
+export const getCookie = (key: string): unknown => get(key);
+
+export const setCookie = (key: string, value: unknown): void => {
+  set(key, value);
 };
 
-export const setItem = (key: string, value: unknown): void => {
-  set(key, JSON.stringify(value));
-};
-
-export const removeItem = (key: string): void => {
+export const removeCookie = (key: string): void => {
   remove(key);
 };
 
@@ -21,8 +19,8 @@ export const clearAllCookies = (): void => {
   const allCookies = getAll();
   console.log(allCookies);
   allCookies.forEach((key: string) => {
-    removeItem(key);
+    removeCookie(key);
   });
 };
 
-export default { getItem, setItem, removeItem, clearAllCookies };
+export default { getCookie, setCookie, removeCookie, clearAllCookies };
