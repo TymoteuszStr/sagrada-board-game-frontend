@@ -4,7 +4,7 @@ import TextInput from "./elements/TextInput.vue";
 import PasswordInput from "./elements/PasswordInput.vue";
 import SubmitBtn from "./elements/SubmitBtn.vue";
 import Text from "./elements/WarningText.vue";
-import { registerUser } from "@/composables/api/registerUser";
+import registerUser from "@/composables/api/registerUser";
 
 const emit = defineEmits(["showLogin"]);
 const login = ref("");
