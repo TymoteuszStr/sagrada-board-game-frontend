@@ -7,5 +7,5 @@ export default function setDefaultAxiosConfig() {
   setBaseUrl();
   setContentType();
   const token = getToken();
-  if (token.length > 0) setAuthorizationHeader(token);
+  if (token) setAuthorizationHeader(token);
 }

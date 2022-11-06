@@ -1,9 +1,8 @@
-import type IUser from "@/models/userModel";
+import type IUser from "@/models/interfaces/userModel";
 import axios from "axios";
-import { getToken } from "../services/jwt.service";
 
 export default async function getUserFromToken(
-  token: string = getToken()
+  token: string
 ): Promise<IUser | null> {
   const resp = await axios({
     method: "post",

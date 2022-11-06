@@ -5,7 +5,7 @@ import App from "./App.vue";
 import router from "./router";
 
 import "./assets/styles/main.scss";
-import setActiveUser from "./composables/shared/setActiveUser";
+import setActiveUser from "./composables/user/setActiveUser";
 import setDefaultAxiosConfig from "./composables/axios/setDefaultAxiosConfig";
 
 const app = createApp(App);

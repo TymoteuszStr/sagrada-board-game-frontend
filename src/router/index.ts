@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import AuthorizationView from "@/views/AuthorizationView.vue";
 import { useUserStore } from "@/stores/UserStore";
+import { getCookie } from "@/composables/services/cookie.service";
+import { IS_USER_LOG_IN } from "@/models/constants";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,7 +20,8 @@ const router = createRouter({
   ],
 });
 router.beforeEach((to, from, next) => {
-  if (!useUserStore().isUserLogged) {
+  const isUserLogIn = getCookie(IS_USER_LOG_IN);
+  if (!isUserLogIn) {
     if (to.path === "/") next();
     else next("/");
   } else {

@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import logout from "@/composables/user/logout";
+</script>
 
 <template>
   <main>
-    <h1>Hello World</h1>
+    <button type="button" @click="logout">logout</button>
   </main>
 </template>
