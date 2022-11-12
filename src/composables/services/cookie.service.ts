@@ -17,7 +17,6 @@ export const removeCookie = (key: string): void => {
 
 export const clearAllCookies = (): void => {
   const allCookies = getAll();
-  console.log(allCookies);
   allCookies.forEach((key: string) => {
     removeCookie(key);
   });

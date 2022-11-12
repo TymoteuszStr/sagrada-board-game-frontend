@@ -5,11 +5,10 @@ import PasswordInput from "./elements/PasswordInput.vue";
 import SubmitBtn from "./elements/SubmitBtn.vue";
 import Text from "./elements/WarningText.vue";
 import { useRouter } from "vue-router";
-import { authorization } from "@/composables/api/authorization";
+import authorization from "@/composables/api/user/authorization";
 import { useVibrate } from "@vueuse/core";
-import { useUserStore } from "@/stores/UserStore";
+import setAuthenticatedUser from "@/composables/store/setAuthenticatedUser";
 
-const userStore = useUserStore();
 const login = ref("");
 const password = ref("");
 const router = useRouter();
@@ -20,8 +19,7 @@ async function handleSubmit(e: Event) {
   e.preventDefault();
   try {
     const user = await authorization(login.value, password.value);
-    userStore.user = user;
-    userStore.isUserLogged = true;
+    setAuthenticatedUser(user);
     router.push("/home");
   } catch (err) {
     formError.value = true;

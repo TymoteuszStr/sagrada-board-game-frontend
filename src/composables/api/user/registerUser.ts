@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from "axios";
 
-export async function registerUser(
+export default async function registerUser(
   login: string,
   password: string
 ): Promise<AxiosResponse> {

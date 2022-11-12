@@ -7,18 +7,24 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "Authorization",
+      name: "authorization",
       component: AuthorizationView,
     },
     {
       path: "/home",
-      name: "Home",
+      name: "home",
       component: () => import("../views/HomeView.vue"),
+    },
+    {
+      path: "/new-room",
+      name: "new-room",
+      component: () => import("../views/NewRoomView.vue"),
     },
   ],
 });
 router.beforeEach((to, from, next) => {
-  if (!useUserStore().isUserLogged) {
+  const { isUserLogIn } = useUserStore();
+  if (!isUserLogIn) {
     if (to.path === "/") next();
     else next("/");
   } else {
