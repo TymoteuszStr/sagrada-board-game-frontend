@@ -5,7 +5,7 @@ import PasswordInput from "./elements/PasswordInput.vue";
 import SubmitBtn from "./elements/SubmitBtn.vue";
 import Text from "./elements/WarningText.vue";
 import { useRouter } from "vue-router";
-import authorization from "@/composables/api/authorization";
+import authorization from "@/composables/api/user/authorization";
 import { useVibrate } from "@vueuse/core";
 import setAuthenticatedUser from "@/composables/store/setAuthenticatedUser";
 
