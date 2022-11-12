@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import AuthContainer from "@/components/Authorization/AuthContainer.vue";
-import LogoHeader from "@/components/shared/LogoHeader.vue";
+import LogoHeader from "@/components/Shared/LogoHeader.vue";
 </script>
 <template>
   <div class="wrapper">

@@ -1,6 +1,6 @@
 import axios from "axios";
-import setAuthorizationHeader from "../axios/setAuthorizationHeader";
-import { saveToken, getToken } from "../services/jwt.service";
+import setAuthorizationHeader from "../../axios/setAuthorizationHeader";
+import { saveToken } from "../../services/jwt.service";
 
 export default async function authorization(
   login: string,
@@ -12,7 +12,7 @@ export default async function authorization(
     data: { login, password },
   });
   saveToken(resp.data.token);
-  setAuthorizationHeader(getToken());
+  setAuthorizationHeader();
   return {
     id: resp.data.userId,
     name: resp.data.name,

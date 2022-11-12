@@ -14,6 +14,7 @@ app.use(createPinia());
 app.use(router);
 app.use(autoAnimatePlugin);
 
-app.mount("#app");
 setDefaultAxiosConfig();
 await setActiveUser();
+
+app.mount("#app");
