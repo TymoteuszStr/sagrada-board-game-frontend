@@ -1,13 +1,13 @@
 <script lang="ts" setup>
+import createRoom from "@/composables/api/rooms/createRoom";
 import { useRouter } from "vue-router";
 import MainButton from "../Shared/MainButton.vue";
 import Plus from "../Shared/Plus.vue";
-// import { post } from "@/services/request.s";
 const router = useRouter();
 
 async function creatRoomHandle() {
   try {
-    // await post("createRoom", { name: "test" });
+    await createRoom("test");
     router.push(`/new-room`);
   } catch (e: unknown) {
     console.log(e);
