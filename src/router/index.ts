@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import AuthorizationView from "@/views/AuthorizationView.vue";
 import { useUserStore } from "@/stores/UserStore";
+import { getCookie } from "@/composables/services/cookie.service";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,10 +21,15 @@ const router = createRouter({
       name: "new-room",
       component: () => import("../views/NewRoomView.vue"),
     },
+    {
+      path: "/game",
+      name: "game",
+      component: () => import("../views/GameView.vue"),
+    },
   ],
 });
 router.beforeEach((to, from, next) => {
-  const { isUserLogIn } = useUserStore();
+  const isUserLogIn = getCookie("isUserLogIn");
   if (!isUserLogIn) {
     if (to.path === "/") next();
     else next("/");
