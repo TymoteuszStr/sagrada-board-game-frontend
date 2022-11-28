@@ -1,9 +1,11 @@
 <script lang="ts" setup>
+import { Icon } from "@iconify/vue";
+
 // const { users } = defineProps<any>();
 
 //temporary
 const users = [
-  { name: "Tymek", id: 0 },
+  { name: "Tymek", id: 0, picture: "" },
   { name: "Basia", id: 1 },
   { name: "Olio", id: 2 },
   { name: "Olio", id: 3 },
@@ -17,8 +19,9 @@ const users = [
   <fieldset class="wrapper">
     <legend>Players in room</legend>
     <div v-for="user in users" :key="user.id" class="user">
-      <p class="user__name">{{ user.name }}</p>
-      <img alt="msg-icon" />
+      <img class="picture" v-if="user?.picture" alt="msg-icon" />
+      <Icon class="picture" icon="ph:user-circle-fill" />
+      <p class="name">{{ user.name }}</p>
     </div>
   </fieldset>
 </template>
@@ -44,11 +47,16 @@ const users = [
   .user {
     display: flex;
     align-items: center;
+    font-size: 18px;
+    min-height: 35px;
 
-    &__name {
+    .name {
       color: whitesmoke;
       letter-spacing: 1px;
-      padding: 5px 10px 5px 0px;
+    }
+    .picture {
+      margin-right: 8px;
+      font-size: 25px;
     }
   }
 }

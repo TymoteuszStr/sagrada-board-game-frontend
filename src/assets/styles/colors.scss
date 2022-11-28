@@ -2,6 +2,13 @@ $font:"Aladin", cursive;
 $bg-color: #1B202C;
 $text-color: #f3f3f3;
 $grey-color: rgba(217, 217, 217, 0.3);
+$main-gradient: linear-gradient(
+    -90deg,
+    rgba(231, 112, 112, 1),
+    rgba(220, 182, 102, 1),
+    rgba(91, 192, 113, 0.9),
+    rgba(107, 159, 208, 1)
+  );
 $board-color-0: linear-gradient(176.1deg, #DCB666 -20.55%, #E77070 146.54%);
 $board-color-1: linear-gradient(176.1deg, #6AA3D7 -20.55%, rgba(91, 192, 113, 0.9) 146.54%);
 $board-color-2: linear-gradient(180.35deg, rgba(91, 192, 113, 0.9) -28.19%, #DCB666 131.2%);
