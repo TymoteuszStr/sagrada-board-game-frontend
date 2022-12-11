@@ -1,24 +1,13 @@
 <script lang="ts" setup>
 import { Icon } from "@iconify/vue";
 
-// const { users } = defineProps<any>();
-
-//temporary
-const users = [
-  { name: "Tymek", id: 0, picture: "" },
-  { name: "Basia", id: 1 },
-  { name: "Olio", id: 2 },
-  { name: "Olio", id: 3 },
-  { name: "Olio", id: 4 },
-  { name: "Olio", id: 5 },
-  { name: "Olio", id: 6 },
-];
+const props = defineProps<any>();
 </script>
 
 <template>
   <fieldset class="wrapper">
     <legend>Players in room</legend>
-    <div v-for="user in users" :key="user.id" class="user">
+    <div v-for="user in props.users" :key="user.id" class="user">
       <img class="picture" v-if="user?.picture" alt="msg-icon" />
       <Icon class="picture" icon="ph:user-circle-fill" />
       <p class="name">{{ user.name }}</p>

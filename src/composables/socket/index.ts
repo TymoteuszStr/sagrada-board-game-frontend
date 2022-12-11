@@ -4,7 +4,8 @@ import { io } from "socket.io-client";
 export function useWebSocketIO() {
   const socket = io(`${URI}:${PORT_WS}`);
   socket.on("connect", () => {
-    console.log("connected", socket);
+    console.log("connected with id", socket.id);
   });
+
   return { socket };
 }

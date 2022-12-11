@@ -1,7 +1,14 @@
 <script lang="ts" setup>
 import getRooms from "@/composables/api/rooms/getRooms";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
 const rooms = ref(await getRooms());
+const router = useRouter();
+
+function goToRoom(id: string) {
+  router.push(`/room/${id}`);
+}
 </script>
 
 <template>
@@ -10,7 +17,7 @@ const rooms = ref(await getRooms());
     <p v-if="rooms.length === 0">Sorry... there is no rooms at the moment</p>
     <div v-else class="rooms-container">
       <div v-for="room in rooms" :key="room?._id">
-        <p>{{ room?.name }}</p>
+        <p @click="goToRoom(room._id)">{{ room?.name }}</p>
       </div>
     </div>
   </div>
@@ -29,7 +36,9 @@ const rooms = ref(await getRooms());
 
   p {
     color: rgba(255, 255, 255, 0.7);
-    margin: 30px 0;
+    margin: 10px 0;
+    height: 30px;
+    cursor: pointer;
   }
 }
 </style>

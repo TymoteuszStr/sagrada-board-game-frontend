@@ -7,7 +7,7 @@
 <style lang="scss" scoped>
 div {
   width: 17px;
-  height: 1px;
+  height: 2px;
   background-color: rgb(27, 32, 44);
 
   &:last-child {

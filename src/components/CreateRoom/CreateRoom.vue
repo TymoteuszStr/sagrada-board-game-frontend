@@ -7,8 +7,8 @@ const router = useRouter();
 
 async function creatRoomHandle() {
   try {
-    await createRoom("test");
-    router.push(`/new-room`);
+    const id = await createRoom("test");
+    router.push(`/room/${id}`);
   } catch (e: unknown) {
     console.log(e);
   }
