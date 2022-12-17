@@ -6,10 +6,27 @@ import PlayersList from "@/components/Room/PlayersList.vue";
 import Chat from "@/components/Chat/Chat.vue";
 import MainButton from "@/components/Shared/MainButton.vue";
 import { useWebSocketIO } from "@/composables/socket/";
+import { ref, type Ref } from "vue";
+
+const props = defineProps<{ id: string }>();
 const { socket } = useWebSocketIO();
-socket.on("playersInThisRoom", (data) => {
-  console.log(data);
+socket.emit("enterToRoom", props.id);
+
+socket.on("playersInThisRoom", (players: any) => {
+  console.log(players);
 });
+
+const messages: Ref<any[]> = ref([]);
+socket.on("newMessage", (message: any) => {
+  console.log("I got new message !", message);
+  messages.value.push({ id: Math.random(), text: message });
+  console.log(message);
+});
+
+function sendMessage(message: any) {
+  console.log(message);
+  socket.emit("sendMessage", message);
+}
 </script>
 
 <template>
@@ -18,10 +35,10 @@ socket.on("playersInThisRoom", (data) => {
     <h2>The game is about to start!</h2>
     <PlayerContainer />
     <BoardsContainer />
-    <PlayersList />
+    <PlayersList :users="[]" />
     <MainButton class="startBtn">START GAME</MainButton>
   </div>
-  <Chat />
+  <Chat :messages="messages" @sendMessage="sendMessage" />
 </template>
 
 <style lang="scss" scoped>

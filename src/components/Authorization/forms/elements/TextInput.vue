@@ -24,19 +24,20 @@ const text = computed({
 
 <style lang="scss" scoped>
 .textInput {
-  color: white;
+  color: $text-color;
   height: 50px;
   width: 260px;
   border-radius: 25px;
-  background: #242b44;
+  background: $input-bg-color;
 }
+
 input:-webkit-autofill {
-  -webkit-text-fill-color: white !important;
+  -webkit-text-fill-color: $text-color !important;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  box-shadow: 0 0 0 50px #242b44 inset !important;
+  box-shadow: 0 0 0 50px $input-bg-color inset !important;
 }
 </style>

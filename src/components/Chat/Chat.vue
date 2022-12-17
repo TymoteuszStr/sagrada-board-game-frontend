@@ -1,15 +1,36 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { Icon } from "@iconify/vue";
+import { ref } from "vue";
+import { useVibrate } from "@vueuse/core";
+const props = defineProps<{ messages: any[] }>();
+const emit = defineEmits(["sendMessage"]);
+const { vibrate } = useVibrate({ pattern: [100, 100] });
+
+const myMessage = ref("");
+function submitHandler() {
+  vibrate();
+  emit("sendMessage", myMessage.value.trim());
+  myMessage.value = "";
+}
+</script>
 
 <template>
-  <div class="wrapper">
-    <input type="text" placeholder="type your message..." class="inputMsg" />
+  <form class="wrapper" @submit.prevent="submitHandler">
+    <input
+      type="text"
+      placeholder="type your message..."
+      class="inputMsg"
+      v-model="myMessage"
+    />
     <div class="messages-container">
-      <p class="message">test</p>
-      <p class="message">test</p>
-      <p class="message">test</p>
-      <p class="message">test</p>
+      <p class="message" v-for="message in props.messages" :key="message.id">
+        {{ message.text }}
+      </p>
     </div>
-  </div>
+    <button type="submit" class="submit-btn">
+      <Icon class="send-icon" icon="material-symbols:send-rounded" />
+    </button>
+  </form>
 </template>
 
 <style lang="scss" scoped>
@@ -48,6 +69,21 @@
     color: white;
     outline: none;
     padding: 20px 30px;
+  }
+
+  .submit-btn {
+    position: absolute;
+    display: flex;
+    right: 20px;
+    bottom: 20px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+
+    .send-icon {
+      color: $grey-color;
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 </style>

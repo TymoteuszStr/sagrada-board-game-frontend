@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { Icon } from "@iconify/vue";
-
-const props = defineProps<any>();
+import type { IUser } from "@/models/interfaces/userModel";
+const props = defineProps<{ users: IUser[] }>();
 </script>
 
 <template>
   <fieldset class="wrapper">
     <legend>Players in room</legend>
-    <div v-for="user in props.users" :key="user.id" class="user">
+    <div v-for="user in props.users" :key="user._id" class="user">
       <img class="picture" v-if="user?.picture" alt="msg-icon" />
       <Icon class="picture" icon="ph:user-circle-fill" />
       <p class="name">{{ user.name }}</p>
