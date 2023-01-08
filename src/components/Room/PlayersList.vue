@@ -1,16 +1,21 @@
 <script lang="ts" setup>
-import { Icon } from "@iconify/vue";
 import type { IUser } from "@/models/interfaces/userModel";
-const props = defineProps<{ users: IUser[] }>();
+import { Icon } from "@iconify/vue";
+const props = defineProps<{ players: IUser[] }>();
 </script>
 
 <template>
   <fieldset class="wrapper">
     <legend>Players in room</legend>
-    <div v-for="user in props.users" :key="user._id" class="user">
-      <img class="picture" v-if="user?.picture" alt="msg-icon" />
+    <div
+      v-for="player in props.players"
+      :key="player.id"
+      class="user"
+      @clic="$emit('playerCliked', player)"
+    >
+      <img class="picture" v-if="player?.picture" alt="msg-icon" />
       <Icon class="picture" icon="ph:user-circle-fill" />
-      <p class="name">{{ user.name }}</p>
+      <p class="name">{{ player.name }}</p>
     </div>
   </fieldset>
 </template>
@@ -38,7 +43,7 @@ const props = defineProps<{ users: IUser[] }>();
     align-items: center;
     font-size: 18px;
     min-height: 35px;
-
+    cursor: pointer;
     .name {
       color: whitesmoke;
       letter-spacing: 1px;

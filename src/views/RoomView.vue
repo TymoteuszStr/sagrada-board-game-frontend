@@ -5,28 +5,36 @@ import BoardsContainer from "@/components/Room/BoardsContainer.vue";
 import PlayersList from "@/components/Room/PlayersList.vue";
 import Chat from "@/components/Chat/Chat.vue";
 import MainButton from "@/components/Shared/MainButton.vue";
-import { useWebSocketIO } from "@/composables/socket/";
-import { ref, type Ref } from "vue";
+import { useWebSocketIO } from "@/composables/webSocket/WebSocket";
+import {
+  USER_ENTER_ROOM,
+  USER_LEAVE_ROOM,
+  PLAYERS_LIST_IN_ROOM,
+} from "@/models/webSocketEvents";
+import { useUserStore } from "@/stores/UserStore";
+import { onUnmounted, ref, onMounted, type Ref } from "vue";
+import type { IUser } from "@/models/interfaces/userModel";
 
-const props = defineProps<{ id: string }>();
+const props = defineProps<{ roomId: string }>();
+const userStore = useUserStore();
 const { socket } = useWebSocketIO();
-socket.emit("enterToRoom", props.id);
 
-socket.on("playersInThisRoom", (players: any) => {
-  console.log(players);
-});
-
-const messages: Ref<any[]> = ref([]);
-socket.on("newMessage", (message: any) => {
-  console.log("I got new message !", message);
-  messages.value.push({ id: Math.random(), text: message });
-  console.log(message);
-});
-
-function sendMessage(message: any) {
-  console.log(message);
-  socket.emit("sendMessage", message);
+const players: Ref<IUser[]> = ref([]);
+function setPlayerList(playerList: IUser[]): void {
+  if (!playerList) return;
+  players.value = playerList.filter(({ id }) => id !== userStore.user?.id);
 }
+
+socket.on(PLAYERS_LIST_IN_ROOM, (playersInRoom: IUser[]) => {
+  setPlayerList(playersInRoom);
+});
+
+onMounted(() => {
+  socket.emit(USER_ENTER_ROOM, props.roomId, userStore.user?.id, setPlayerList);
+});
+onUnmounted(() => {
+  socket.emit(USER_LEAVE_ROOM, props.roomId, userStore.user?.id);
+});
 </script>
 
 <template>
@@ -35,10 +43,10 @@ function sendMessage(message: any) {
     <h2>The game is about to start!</h2>
     <PlayerContainer />
     <BoardsContainer />
-    <PlayersList :users="[]" />
+    <PlayersList :players="players" />
     <MainButton class="startBtn">START GAME</MainButton>
   </div>
-  <Chat :messages="messages" @sendMessage="sendMessage" />
+  <Chat :socket="socket" :roomId="roomId" />
 </template>
 
 <style lang="scss" scoped>

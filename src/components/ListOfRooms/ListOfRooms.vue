@@ -9,6 +9,7 @@ const router = useRouter();
 function goToRoom(id: string) {
   router.push(`/room/${id}`);
 }
+
 </script>
 
 <template>
