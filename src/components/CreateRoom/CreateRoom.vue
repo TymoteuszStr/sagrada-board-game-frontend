@@ -29,6 +29,7 @@ async function creatRoomHandle() {
 .container {
   @include flex-center;
   height: 160px;
+  width: 350px;
   flex-direction: column;
   border: 1px solid rgba(106, 163, 215, 0.5);
   backdrop-filter: blur(100px);

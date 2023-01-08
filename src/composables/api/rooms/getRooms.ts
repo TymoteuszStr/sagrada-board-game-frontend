@@ -3,6 +3,7 @@ export default async function getRooms(): Promise<
   | {
       _id: string;
       name: string;
+      players: string[];
     }[]
   | []
 > {
