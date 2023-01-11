@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import LogoHeader from "@/components/LogoHeader/LogoHeader.vue";
-import PlayerContainer from "../components/Room/PlayerContainer.vue";
 import BoardsContainer from "@/components/Room/BoardsContainer.vue";
 import PlayersList from "@/components/Room/PlayersList.vue";
 import Chat from "@/components/Chat/Chat.vue";
@@ -41,10 +40,11 @@ onUnmounted(() => {
   <div class="new-room-wrapper">
     <LogoHeader />
     <h2>The game is about to start!</h2>
-    <PlayerContainer />
     <BoardsContainer />
     <PlayersList :players="players" />
-    <MainButton class="startBtn">START GAME</MainButton>
+    <MainButton class="start-button" style="width: 300px"
+      >START GAME</MainButton
+    >
   </div>
   <Chat :socket="socket" :roomId="roomId" />
 </template>
@@ -53,11 +53,6 @@ onUnmounted(() => {
 .new-room-wrapper {
   @include flex-center;
   flex-direction: column;
-}
-
-.startBtn {
-  margin-top: 30px;
-  cursor: pointer;
 }
 
 .disableBtn {
@@ -69,5 +64,12 @@ h2 {
   @include gradient-text-vue;
   @include flex-center;
   font-size: 34px;
+}
+.start-button {
+  margin-top: 30px;
+
+  padding: 20px 15px;
+  max-width: 400px;
+  width: 100% !important;
 }
 </style>

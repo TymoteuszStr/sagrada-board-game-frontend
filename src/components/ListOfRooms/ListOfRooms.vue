@@ -75,12 +75,15 @@ async function refreshListOfRooms() {
   p {
     color: rgba(255, 255, 255, 0.7);
     height: 30px;
-    font-size: 27px;
+    font-size: 24px;
   }
   .rooms-container {
     width: inherit;
+    min-height: 200px;
+    max-height: 300px;
+    overflow: auto;
     .room-item {
-      margin: 20px 10px;
+      margin: 30px 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -93,6 +96,7 @@ async function refreshListOfRooms() {
 
       .players-amount {
         font-size: 20px;
+        width: 50px;
       }
     }
   }
