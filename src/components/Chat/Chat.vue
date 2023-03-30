@@ -1,16 +1,28 @@
 <script lang="ts" setup>
 import { Icon } from "@iconify/vue";
-import { ref } from "vue";
+import { ref, type Ref } from "vue";
 import { useVibrate } from "@vueuse/core";
-const props = defineProps<{ messages: any[] }>();
-const emit = defineEmits(["sendMessage"]);
-const { vibrate } = useVibrate({ pattern: [100, 100] });
+import { NEW_MESSAGE } from "@/models/webSocketEvents";
 
+const props = defineProps<{ socket: any; roomId: string }>();
+const { vibrate } = useVibrate({ pattern: [100, 100] });
+const messages: Ref<any> = ref([]);
 const myMessage = ref("");
 function submitHandler() {
   vibrate();
-  emit("sendMessage", myMessage.value.trim());
+  sendMessage(myMessage.value.trim());
   myMessage.value = "";
+}
+
+props.socket.on(NEW_MESSAGE, (message: any) => {
+  ``;
+  messages.value.push(message);
+});
+
+function sendMessage(message: string) {
+  console.log(props.socket, message);
+  props.socket.emit(NEW_MESSAGE, message, props.roomId);
+  ``;
 }
 </script>
 
@@ -23,7 +35,7 @@ function submitHandler() {
       v-model="myMessage"
     />
     <div class="messages-container">
-      <p class="message" v-for="message in props.messages" :key="message.id">
+      <p class="message" v-for="message in messages" :key="message.id">
         {{ message.text }}
       </p>
     </div>
@@ -66,6 +78,7 @@ function submitHandler() {
     order: 2;
     width: 100%;
     background-color: rgb(0, 0, 0);
+    margin: 0;
     color: white;
     outline: none;
     padding: 20px 30px;
@@ -75,7 +88,7 @@ function submitHandler() {
     position: absolute;
     display: flex;
     right: 20px;
-    bottom: 20px;
+    bottom: 15px;
     background-color: rgba(255, 255, 255, 0);
     border: none;
 
