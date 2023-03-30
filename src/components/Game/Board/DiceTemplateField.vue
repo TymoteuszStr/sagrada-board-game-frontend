@@ -1,9 +1,29 @@
 <script setup lang="ts">
+import { onMounted, onUnmounted, ref } from "vue";
+
 const props = defineProps<{ score: number }>();
 
 const dotArr: number[] = [];
 if (props.score < 6 || props.score > 1)
   for (let i = 0; i < props.score; i++) dotArr.push(i);
+
+let dotSize = ref();
+function setDotSize() {
+  const elem = document.querySelector(".dot-container");
+  dotSize.value = (elem?.clientWidth || 70) / 10;
+}
+
+onMounted(() => {
+  setDotSize();
+  window?.addEventListener("resize", () => {
+    setDotSize();
+  });
+});
+onUnmounted(() => {
+  window?.removeEventListener("resize", () => {
+    setDotSize();
+  });
+});
 </script>
 
 <template>
@@ -19,16 +39,16 @@ if (props.score < 6 || props.score > 1)
   width: 100%;
   min-height: 100%;
   display: grid;
-  padding: 10px;
+  padding: 10%;
 }
 .dot-wrapper {
   @include flex-center;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
-  background-color: rgba(255, 255, 255, 0.7);
+  width: v-bind("`${dotSize}px`");
+  height: v-bind("`${dotSize}px`");
+  background-color: #f5f5f5b4;
   border-radius: 50%;
 }
 [data-score="1"] {

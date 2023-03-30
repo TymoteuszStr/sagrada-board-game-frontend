@@ -40,10 +40,12 @@ const testPattern = [
 
 <style scoped lang="scss">
 .grid-container {
-  width: 500px;
-  height: 400px;
+  min-width: 250px;
+  min-height: 200px;
+  aspect-ratio: 5 / 4;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 1fr);
+  gap: 5%;
 }
 </style>

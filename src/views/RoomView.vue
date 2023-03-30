@@ -9,10 +9,12 @@ import {
   USER_ENTER_ROOM,
   USER_LEAVE_ROOM,
   PLAYERS_LIST_IN_ROOM,
+  START_GAME,
 } from "@/models/webSocketEvents";
 import { useUserStore } from "@/stores/UserStore";
 import { onUnmounted, ref, onMounted, type Ref } from "vue";
 import type { IUser } from "@/models/interfaces/userModel";
+import router from "@/router";
 
 const props = defineProps<{ roomId: string }>();
 const userStore = useUserStore();
@@ -28,6 +30,11 @@ socket.on(PLAYERS_LIST_IN_ROOM, (playersInRoom: IUser[]) => {
   setPlayerList(playersInRoom);
 });
 
+function startGame() {
+  router.push(`/game/${props.roomId}`);
+  socket.emit(START_GAME);
+}
+
 onMounted(() => {
   socket.emit(USER_ENTER_ROOM, props.roomId, userStore.user?.id, setPlayerList);
 });
@@ -42,7 +49,7 @@ onUnmounted(() => {
     <h2>The game is about to start!</h2>
     <BoardsContainer />
     <PlayersList :players="players" />
-    <MainButton class="start-button" style="width: 300px"
+    <MainButton class="start-button" style="width: 300px" @click="startGame"
       >START GAME</MainButton
     >
   </div>
