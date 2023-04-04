@@ -2,10 +2,14 @@
 import DiceTemplateField from "./DiceTemplateField.vue";
 import { ValuesColorEnum } from "@/models/enums/colorEnum";
 const props = defineProps<{ field: any }>();
+
+function setActive(elem: any) {
+  elem.target.classList.toggle("active");
+}
 </script>
 
 <template>
-  <div class="field">
+  <div class="field" @click="(event) => setActive(event)">
     <div
       v-if="field.type === 1"
       class="colorField"
