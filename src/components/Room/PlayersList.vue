@@ -1,24 +1,21 @@
 <script lang="ts" setup>
-// const { users } = defineProps<any>();
-
-//temporary
-const users = [
-  { name: "Tymek", id: 0 },
-  { name: "Basia", id: 1 },
-  { name: "Olio", id: 2 },
-  { name: "Olio", id: 3 },
-  { name: "Olio", id: 4 },
-  { name: "Olio", id: 5 },
-  { name: "Olio", id: 6 },
-];
+import type { IUser } from "@/models/interfaces/userModel";
+import { Icon } from "@iconify/vue";
+const props = defineProps<{ players: IUser[] }>();
 </script>
 
 <template>
   <fieldset class="wrapper">
     <legend>Players in room</legend>
-    <div v-for="user in users" :key="user.id" class="user">
-      <p class="user__name">{{ user.name }}</p>
-      <img alt="msg-icon" />
+    <div
+      v-for="player in props.players"
+      :key="player.id"
+      class="user"
+      @clic="$emit('playerCliked', player)"
+    >
+      <img class="picture" v-if="player?.picture" alt="msg-icon" />
+      <Icon class="picture" icon="ph:user-circle-fill" />
+      <p class="name">{{ player.name }}</p>
     </div>
   </fieldset>
 </template>
@@ -44,11 +41,16 @@ const users = [
   .user {
     display: flex;
     align-items: center;
-
-    &__name {
+    font-size: 18px;
+    min-height: 35px;
+    cursor: pointer;
+    .name {
       color: whitesmoke;
       letter-spacing: 1px;
-      padding: 5px 10px 5px 0px;
+    }
+    .picture {
+      margin-right: 8px;
+      font-size: 25px;
     }
   }
 }

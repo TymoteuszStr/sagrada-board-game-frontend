@@ -1,10 +1,9 @@
 import { ref, type Ref } from "vue";
 import { defineStore } from "pinia";
-import type IUser from "@/models/interfaces/userModel";
+import type { IUser } from "@/models/interfaces/userModel";
 
-export const useUserStore = defineStore("counter", () => {
+export const useUserStore = defineStore("userStore", () => {
   const user: Ref<IUser | undefined> = ref(undefined);
-  const isUserLogIn: Ref<boolean> = ref(false);
 
-  return { user, isUserLogIn };
+  return { user };
 });
