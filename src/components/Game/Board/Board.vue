@@ -207,17 +207,5 @@ function getTransitionClassName(boardPosition: number) {
   }
 }
 
-@keyframes hideAnimation {
-  0% {
-    opaciy: 1;
-    display: auto;
-  }
-  99% {
-    opacity: 0;
-  }
-  100% {
-    height: 0;
-    width: 0;
-  }
-}
+
 </style>
