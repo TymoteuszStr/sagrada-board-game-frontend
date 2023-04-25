@@ -40,9 +40,12 @@ const testPattern = [
 ];
 
 function hidePanel(e: any) {
-  const boardPosition = Number(
-    e.currentTarget.parentNode.attributes["data-position"].value
-  );
+  const boardPosition = Number(e.currentTarget.parentNode.dataset.position);
+  let className = getTransitionClassName(boardPosition);
+  if (className) e.currentTarget.parentNode.classList.toggle(className);
+}
+
+function getTransitionClassName(boardPosition: number) {
   let className = "";
   switch (boardPosition) {
     case 1:
@@ -57,7 +60,7 @@ function hidePanel(e: any) {
     default:
       break;
   }
-  if (className) e.currentTarget.parentNode.classList.toggle(className);
+  return className;
 }
 </script>
 <template>
@@ -85,6 +88,7 @@ function hidePanel(e: any) {
   transition: transform 0.3s ease-out;
   .boardTemplate {
     transition: all 0.3s ease-out;
+    margin-bottom: 10px;
   }
 
   &[data-position="0"] {
@@ -93,7 +97,7 @@ function hidePanel(e: any) {
     transform: translateX(-50%);
   }
   &[data-position="1"] {
-    top: 230px;
+    bottom: 50%;
     left: 0;
   }
   &[data-position="2"] {
@@ -102,13 +106,13 @@ function hidePanel(e: any) {
     transform: translate(-50%, 0);
   }
   &[data-position="3"] {
-    top: 230px;
+    bottom: 50%;
     right: 0;
   }
 }
 .panel {
   height: 35px;
-  margin-top: 10px;
+  padding: 0 45px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -143,26 +147,27 @@ function hidePanel(e: any) {
 .hideToTop {
   transform: translate(-50%, calc(-100% + 55px)) !important;
   .boardTemplate {
-    opacity: 0;
+    transform: translateY(-100%);
+    animation: hideAnimation 0.6s forwards;
   }
 }
 
 .hideToLeft {
   .boardTemplate {
     transform: translateX(-100%);
-    opacity: 0;
+    animation: hideAnimation 0.3s forwards;
   }
   .panel {
-    transform: rotate(-90deg);
+    transform: rotate(-90deg) translateY(8px);
   }
 }
 .hideToRight {
   .boardTemplate {
     transform: translateX(100%);
-    opacity: 0;
+    animation: hideAnimation 0.3s forwards;
   }
   .panel {
-    transform: rotate(90deg);
+    transform: rotate(90deg) translateY(8px);
   }
 }
 
@@ -178,27 +183,41 @@ function hidePanel(e: any) {
   .hideToTop {
     transform: translate(-50%, calc(-100% + 100px)) !important;
     .boardTemplate {
-      opacity: 0;
+      animation: hideAnimation 0.3s forwards;
     }
   }
 
   .hideToLeft {
     .boardTemplate {
       transform: translateX(calc(-100% + 300px)) !important;
-      opacity: 0;
+      animation: hideAnimation 0.3s forwards;
     }
     .panel {
-      transform: rotate(-90deg);
+      transform: rotate(-90deg) translateY(15px);
     }
   }
   .hideToRight {
     .boardTemplate {
       transform: translateX(100%);
-      opacity: 0;
+      animation: hideAnimation 0.3s forwards;
     }
     .panel {
-      transform: rotate(90deg);
+      transform: rotate(90deg) translateY(15px);
     }
+  }
+}
+
+@keyframes hideAnimation {
+  0% {
+    opaciy: 1;
+    display: auto;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    height: 0;
+    width: 0;
   }
 }
 </style>
