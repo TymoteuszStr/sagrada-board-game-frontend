@@ -29,8 +29,8 @@ function toggleCards(e: any) {
 .deck {
   position: absolute;
   display: flex;
-  top: 450px;
-  width: 100px;
+  top: 0;
+  width: 23vw;
 }
 .leftDeck {
   left: 0;
@@ -45,6 +45,8 @@ function toggleCards(e: any) {
   }
 }
 .rightDeck {
+  z-index: 10;
+
   right: 0;
   :first-child {
     right: 10px;
@@ -58,14 +60,15 @@ function toggleCards(e: any) {
 }
 
 .unrollLeft {
+  z-index: 11;
   :first-child {
     left: 10px;
   }
   :nth-child(2) {
-    left: 100px;
+    left: 100%;
   }
   :nth-child(3) {
-    left: 190px;
+    left: calc(200% - 10px);
   }
 }
 .unrollRight {
@@ -73,10 +76,10 @@ function toggleCards(e: any) {
     right: 10px;
   }
   :nth-child(2) {
-    right: 100px;
+    right: 100%;
   }
   :nth-child(3) {
-    right: 190px;
+    right: calc(200% - 10px);
   }
 }
 </style>

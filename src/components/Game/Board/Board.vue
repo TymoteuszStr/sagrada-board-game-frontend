@@ -82,7 +82,6 @@ function getTransitionClassName(boardPosition: number) {
 </template>
 <style scoped lang="scss">
 .wrapper {
-  padding: 15px;
   width: max-content;
   position: absolute;
   transition: transform 0.3s ease-out;
@@ -90,24 +89,17 @@ function getTransitionClassName(boardPosition: number) {
     transition: all 0.3s ease-out;
     margin-bottom: 10px;
   }
-
-  &[data-position="0"] {
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
   &[data-position="1"] {
-    bottom: 50%;
-    left: 0;
+    left: 4px;
   }
   &[data-position="2"] {
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
+    top: 5px;
   }
   &[data-position="3"] {
-    bottom: 50%;
-    right: 0;
+    right: 4px;
+  }
+  &[data-position="0"] {
+    bottom: 2px;
   }
 }
 .panel {
@@ -124,10 +116,10 @@ function getTransitionClassName(boardPosition: number) {
   }
 
   &[data-position="1"] {
-    transform-origin: 0%;
+    transform-origin: 10%;
   }
   &[data-position="3"] {
-    transform-origin: 100%;
+    transform-origin: 90%;
   }
 
   &[data-color="0"] {
@@ -145,29 +137,28 @@ function getTransitionClassName(boardPosition: number) {
 }
 
 .hideToTop {
-  transform: translate(-50%, calc(-100% + 55px)) !important;
+  transform: translateY(calc(-100% + 45px)) !important;
   .boardTemplate {
-    transform: translateY(-100%);
-    animation: hideAnimation 0.6s forwards;
+    opacity: 0;
   }
 }
 
 .hideToLeft {
   .boardTemplate {
     transform: translateX(-100%);
-    animation: hideAnimation 0.3s forwards;
+    opacity: 0;
   }
   .panel {
-    transform: rotate(-90deg) translateY(8px);
+    transform: rotate(-90deg);
   }
 }
 .hideToRight {
   .boardTemplate {
     transform: translateX(100%);
-    animation: hideAnimation 0.3s forwards;
+    opacity: 0;
   }
   .panel {
-    transform: rotate(90deg) translateY(8px);
+    transform: rotate(90deg);
   }
 }
 
@@ -179,33 +170,5 @@ function getTransitionClassName(boardPosition: number) {
       font-size: 35px;
     }
   }
-
-  .hideToTop {
-    transform: translate(-50%, calc(-100% + 100px)) !important;
-    .boardTemplate {
-      animation: hideAnimation 0.3s forwards;
-    }
-  }
-
-  .hideToLeft {
-    .boardTemplate {
-      transform: translateX(calc(-100% + 300px)) !important;
-      animation: hideAnimation 0.3s forwards;
-    }
-    .panel {
-      transform: rotate(-90deg) translateY(15px);
-    }
-  }
-  .hideToRight {
-    .boardTemplate {
-      transform: translateX(100%);
-      animation: hideAnimation 0.3s forwards;
-    }
-    .panel {
-      transform: rotate(90deg) translateY(15px);
-    }
-  }
 }
-
-
 </style>

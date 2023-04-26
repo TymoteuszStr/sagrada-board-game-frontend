@@ -8,17 +8,15 @@ import { RouterView } from "vue-router";
 </template>
 
 <style>
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0);
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:horizontal {
   background: linear-gradient(
@@ -33,5 +31,5 @@ import { RouterView } from "vue-router";
 
 ::-webkit-scrollbar-thumb:hover {
   border: 0;
-}
+} */
 </style>
