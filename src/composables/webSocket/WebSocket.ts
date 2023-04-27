@@ -9,7 +9,7 @@ export function useWebSocketIO() {
     console.log("connected with id", socket.id);
   });
   socket.on(CONNECT_ERROR, () => {
-    alert("Nie jesteś zalogowany");
+    // alert("Nie jesteś zalogowany");
     // logout();
   });
   return { socket };

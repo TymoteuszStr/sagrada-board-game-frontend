@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import Board from "@/components/Game/Board/Board.vue";
 import CardsDeck from "@/components/Game/Cards/CardsDeck.vue";
+import FavorTokens from "@/components/Game/FavorTokens/FavorTokens.vue";
 import { useWebSocketIO } from "@/composables/webSocket/WebSocket";
 
 const { socket } = useWebSocketIO();
 </script>
 <template>
   <div class="gameGrid">
+    <div class="area area-favor-tokens"><FavorTokens :tokenNr="5" /></div>
     <div class="area area1">
       <Board :userName="'Szymek'" :colorNr="3" :positionNr="2" />
     </div>
+    <div class="area area-round-nr"></div>
     <div class="area area2">
       <Board :userName="'Basia'" :colorNr="1" :positionNr="1" />
     </div>
@@ -41,14 +44,23 @@ const { socket } = useWebSocketIO();
     align-items: center;
     justify-content: center;
   }
+  .area-favor-tokens {
+    grid-column: 1 / 4;
+    grid-row: 1 / span 3;
+  }
   .area1 {
-    grid-column: 1 / -1;
+    grid-column: 4 / 10;
+    grid-row: 1 / span 3;
+  }
+  .area-round-nr {
+    grid-column: 10 / -1;
     grid-row: 1 / span 3;
   }
   .area2 {
     grid-column: 1 / 7;
     grid-row: 4 / span 3;
   }
+
   .area3 {
     grid-column: 7/ -1;
     grid-row: 4 / span 3;
