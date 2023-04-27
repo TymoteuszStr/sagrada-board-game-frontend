@@ -2,6 +2,7 @@
 import Board from "@/components/Game/Board/Board.vue";
 import CardsDeck from "@/components/Game/Cards/CardsDeck.vue";
 import FavorTokens from "@/components/Game/FavorTokens/FavorTokens.vue";
+import RoundsPanel from "@/components/Game/RoundsPanel/RoundsPanel.vue";
 import { useWebSocketIO } from "@/composables/webSocket/WebSocket";
 
 const { socket } = useWebSocketIO();
@@ -12,7 +13,9 @@ const { socket } = useWebSocketIO();
     <div class="area area1">
       <Board :userName="'Szymek'" :colorNr="3" :positionNr="2" />
     </div>
-    <div class="area area-round-nr"></div>
+    <div class="area area-round-nr">
+      <RoundsPanel />
+    </div>
     <div class="area area2">
       <Board :userName="'Basia'" :colorNr="1" :positionNr="1" />
     </div>
