@@ -13,6 +13,7 @@
   position: absolute;
   width: calc(20vw - 3px);
   min-width: 60px;
+  max-width: 90px;
   height: 110px;
   background: $board-color-1;
   border-radius: 7px;

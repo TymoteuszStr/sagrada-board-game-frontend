@@ -1,24 +1,41 @@
 <script setup lang="ts">
+import { useSwipe } from "@vueuse/core";
 import SingleCard from "./SingleCard.vue";
+import { ref } from "vue";
 
-function toggleCards(e: any) {
+const leftDeck = ref(null);
+useSwipe(leftDeck, {
+  passive: true,
+  onSwipe(e: TouchEvent) {
+    toggleLeftDeck(e);
+  },
+});
+const rightDeck = ref(null);
+useSwipe(rightDeck, {
+  passive: false,
+  onSwipe(e: any) {
+    toggleRightDeck(e);
+  },
+});
+function toggleRightDeck(e: any) {
   const cardDecks = document.querySelectorAll(".deck");
-  const isRightDeck = !!Number(e.currentTarget.dataset.deck);
-  if (isRightDeck) e.currentTarget.classList.toggle("unrollRight");
-  else e.currentTarget.classList.toggle("unrollLeft");
-
-  if (isRightDeck) cardDecks[0].classList.remove("unrollLeft");
-  else cardDecks[1].classList.remove("unrollRight");
+  e.currentTarget.classList.toggle("unrollRight");
+  cardDecks[0].classList.remove("unrollLeft");
+}
+function toggleLeftDeck(e: any) {
+  const cardDecks = document.querySelectorAll(".deck");
+  e.currentTarget.classList.toggle("unrollLeft");
+  cardDecks[1].classList.remove("unrollRight");
 }
 </script>
 
 <template>
-  <div class="deck leftDeck" @click="toggleCards" data-deck="0">
+  <div class="deck leftDeck" data-deck="0" ref="leftDeck">
     <SingleCard />
     <SingleCard />
     <SingleCard />
   </div>
-  <div class="deck rightDeck" @click="toggleCards" data-deck="1">
+  <div class="deck rightDeck" data-deck="1" ref="rightDeck">
     <SingleCard />
     <SingleCard />
     <SingleCard />
