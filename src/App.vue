@@ -5,10 +5,11 @@ import { RouterView } from "vue-router";
 <template>
   <header></header>
   <RouterView />
+  
 </template>
 
 <style>
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
@@ -31,5 +32,5 @@ import { RouterView } from "vue-router";
 
 ::-webkit-scrollbar-thumb:hover {
   border: 0;
-} */
+}
 </style>

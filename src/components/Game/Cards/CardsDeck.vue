@@ -12,7 +12,7 @@ useSwipe(leftDeck, {
 });
 const rightDeck = ref(null);
 useSwipe(rightDeck, {
-  passive: false,
+  passive: true,
   onSwipe(e: any) {
     toggleRightDeck(e);
   },
