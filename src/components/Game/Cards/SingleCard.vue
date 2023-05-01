@@ -6,7 +6,6 @@ let showBackground = ref(false);
 function openCard() {
   if (card.value === null) return;
   const isCardOpen = !Array(...card.value.classList).includes("previewCard");
-  console.log(Array(...card.value.classList), isCardOpen);
   if (isCardOpen) {
     showBackground.value = true;
     card.value.classList.add("previewCard");

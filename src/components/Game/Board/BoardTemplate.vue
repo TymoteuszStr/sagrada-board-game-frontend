@@ -8,7 +8,7 @@ const props = defineProps<{ pattern: any; isMainUser: boolean }>();
     <SingleField
       v-for="field in props.pattern"
       :key="field.id"
-      :isActiveBtn="props.isMainUser"
+      :isMainUser="props.isMainUser"
       :field="field"
     />
   </div>
