@@ -8,7 +8,7 @@ const router = createRouter({
     {
       path: "/",
       name: "authorization",
-      component: AuthorizationView,
+      component: () => import("../views/GameView.vue"),
     },
     {
       path: "/home",

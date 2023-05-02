@@ -5,6 +5,7 @@ import { RouterView } from "vue-router";
 <template>
   <header></header>
   <RouterView />
+  
 </template>
 
 <style>
@@ -13,12 +14,10 @@ import { RouterView } from "vue-router";
   height: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0);
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:horizontal {
   background: linear-gradient(

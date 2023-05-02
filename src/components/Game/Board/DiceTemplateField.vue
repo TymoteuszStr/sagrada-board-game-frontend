@@ -1,29 +1,13 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue";
+import { computed } from "vue";
 
-const props = defineProps<{ score: number }>();
+const props = defineProps<{ score: number; isMainUser: boolean }>();
 
 const dotArr: number[] = [];
 if (props.score < 6 || props.score > 1)
   for (let i = 0; i < props.score; i++) dotArr.push(i);
 
-let dotSize = ref();
-function setDotSize() {
-  const elem = document.querySelector(".dot-container");
-  dotSize.value = (elem?.clientWidth || 70) / 10;
-}
-
-onMounted(() => {
-  setDotSize();
-  window?.addEventListener("resize", () => {
-    setDotSize();
-  });
-});
-onUnmounted(() => {
-  window?.removeEventListener("resize", () => {
-    setDotSize();
-  });
-});
+let dotSize = computed(() => (props.isMainUser ? 6 : 3));
 </script>
 
 <template>
