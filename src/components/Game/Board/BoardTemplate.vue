@@ -33,11 +33,11 @@ const props = defineProps<{ pattern: any; isMainUser: boolean }>();
 @media screen and (min-width: $min-desktop-width) {
   .grid-container {
     width: 650px;
-    max-width: 300px;
+    max-width: 200px;
   }
   .mainBoard {
     width: 900px;
-    max-width: 500px;
+    max-width: 300px;
   }
 }
 </style>

@@ -84,6 +84,9 @@ function getTransitionClassName(boardPosition: number) {
 .wrapper {
   width: max-content;
   position: absolute;
+  max-height: 300px;
+  z-index: 1;
+
   transition: transform 0.3s ease-out;
   .boardTemplate {
     transition: all 0.3s ease-out;

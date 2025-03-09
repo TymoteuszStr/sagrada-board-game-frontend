@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-const props = defineProps<{ score: number; isMainUser: boolean }>();
-
+export interface IProps {
+  score: number;
+  isMainUser?: boolean;
+}
+const props = withDefaults(defineProps<IProps>(), {
+  isMainUser: false,
+});
 const dotArr: number[] = [];
 if (props.score < 6 || props.score > 1)
   for (let i = 0; i < props.score; i++) dotArr.push(i);

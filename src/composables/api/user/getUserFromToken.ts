@@ -1,4 +1,4 @@
-import type IUser from "@/models/interfaces/userModel";
+import type { IUser } from "@/models/interfaces/userModel";
 import axios from "axios";
 
 export default async function getUserFromToken(

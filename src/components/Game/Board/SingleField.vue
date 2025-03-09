@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DiceTemplateField from "./DiceTemplateField.vue";
+import DiceTemplateField from "../Dice/DiceTemplateField.vue";
 import { ValuesColorEnum } from "@/models/enums/colorEnum";
 const props = defineProps<{ field: any; isMainUser: boolean }>();
 

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import Board from "@/components/Game/Board/Board.vue";
 import CardsDeck from "@/components/Game/Cards/CardsDeck.vue";
+import DicesContainer from "@/components/Game/Dice/DicesContainer.vue";
 import FavorTokens from "@/components/Game/FavorTokens/FavorTokens.vue";
 import RoundsPanel from "@/components/Game/RoundsPanel/RoundsPanel.vue";
 import { useWebSocketIO } from "@/composables/webSocket/WebSocket";
+import { ColorEnum as CE } from "@/models/enums/colorEnum";
 
 const { socket } = useWebSocketIO();
 </script>
@@ -29,6 +31,21 @@ const { socket } = useWebSocketIO();
       <Board :userName="'Tymek'" :colorNr="2" :positionNr="0" isMainUser />
     </div>
   </div>
+  <DicesContainer
+    :dices="[
+      { id: 1, score: 1, color: CE.red },
+      { id: 2, score: 1, color: CE.blue },
+      { id: 3, score: 2, color: CE.green },
+      { id: 4, score: 5, color: CE.blue },
+      { id: 5, score: 3, color: CE.yellow },
+      { id: 6, score: 6, color: CE.blue },
+      { id: 7, score: 4, color: CE.blue },
+      { id: 8, score: 2, color: CE.green },
+      { id: 9, score: 5, color: CE.blue },
+      { id: 10, score: 3, color: CE.yellow },
+      { id: 11, score: 6, color: CE.blue },
+    ]"
+  />
 </template>
 <style scoped lang="scss">
 .gameGrid {
@@ -76,6 +93,16 @@ const { socket } = useWebSocketIO();
     grid-column: 1/ -1;
     grid-row: 9 / -1;
     align-items: flex-end;
+  }
+}
+
+@media screen and (min-width: $min-desktop-width) {
+  .gameGrid {
+    .area4 {
+      grid-row: 8 / span 2;
+    }
+    .area5 {
+    }
   }
 }
 </style>
