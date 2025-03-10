@@ -3,10 +3,10 @@ import BoardMiniature from "./BoardMiniature.vue";
 </script>
 <template>
   <div class="boards-container">
-    <BoardMiniature :nr="0" />
-    <BoardMiniature :nr="1" />
-    <BoardMiniature :nr="2" />
-    <BoardMiniature :nr="3" />
+    <BoardMiniature :nr="0" @click="$emit('boardClicked', 0)" />
+    <BoardMiniature :nr="1" @click="$emit('boardClicked', 1)" />
+    <BoardMiniature :nr="2" @click="$emit('boardClicked', 2)" />
+    <BoardMiniature :nr="3" @click="$emit('boardClicked', 3)" />
   </div>
   <p>pick your board color</p>
 </template>

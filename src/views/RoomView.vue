@@ -15,6 +15,7 @@ import { useUserStore } from "@/stores/UserStore";
 import { onUnmounted, ref, onMounted, type Ref } from "vue";
 import type { IUser } from "@/models/interfaces/userModel";
 import router from "@/router";
+import startNewGame from "@/composables/api/game/startNewGame";
 
 const props = defineProps<{ roomId: string }>();
 const userStore = useUserStore();
@@ -26,20 +27,26 @@ function setPlayerList(playerList: IUser[]): void {
   players.value = playerList.filter(({ id }) => id !== userStore.user?.id);
 }
 
-socket.on(PLAYERS_LIST_IN_ROOM, (playersInRoom: IUser[]) => {
-  setPlayerList(playersInRoom);
-});
+// socket.on(PLAYERS_LIST_IN_ROOM, (playersInRoom: IUser[]) => {
+//   setPlayerList(playersInRoom);
+// });
 
-function startGame() {
+async function startGame() {
+  const resp = await startNewGame(props.roomId);
+  console.log(resp);
   router.push(`/game/${props.roomId}`);
-  socket.emit(START_GAME);
+  // socket.emit(START_GAME);
+}
+function saveColor(colorNr: number) {
+  console.log(colorNr);
+  //add logic to set color to player
 }
 
 onMounted(() => {
-  socket.emit(USER_ENTER_ROOM, props.roomId, userStore.user?.id, setPlayerList);
+  // socket.emit(USER_ENTER_ROOM, props.roomId, userStore.user?.id, setPlayerList);
 });
 onUnmounted(() => {
-  socket.emit(USER_LEAVE_ROOM, props.roomId, userStore.user?.id);
+  // socket.emit(USER_LEAVE_ROOM, props.roomId, userStore.user?.id);
 });
 </script>
 
@@ -47,7 +54,7 @@ onUnmounted(() => {
   <div class="new-room-wrapper">
     <LogoHeader />
     <h2>The game is about to start!</h2>
-    <BoardsContainer />
+    <BoardsContainer @boardClicked="saveColor" />
     <PlayersList :players="players" />
     <MainButton class="start-button" style="width: 300px" @click="startGame"
       >START GAME</MainButton
