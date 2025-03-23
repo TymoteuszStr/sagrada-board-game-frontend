@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
+
+console.log("TEST 123");
 </script>
 
 <template>
-  <header></header>
+  <h1>TEST 123</h1>
   <RouterView />
-  
 </template>
 
 <style>
